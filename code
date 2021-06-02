@@ -1,0 +1,16 @@
+int pir_pin = D4;
+int pir_state = LOW;
+int motion = 0;
+
+void setup() {
+    pinMode(pir_pin, INPUT_PULLDOWN);
+}
+
+void loop() {
+    motion = digitalRead(pir_pin);
+    if(motion == 1)
+    {
+        Particle.publish("motion", String(motion), PRIVATE);
+    }
+    delay(1000);
+}
